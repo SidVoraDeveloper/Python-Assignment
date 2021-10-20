@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container" style="padding-top:25px">
+        <center>
+            <a href="/Add_Employee" class="btn btn-info">Add Employee</a>
+            <a href="/Same_Salary" class="btn btn-info">Same Salary</a>
+            <a href="/Second_Lowest_Salary" class="btn btn-info">Second Lowest Salary</a>
+            <a href="/Top_10_Salary" class="btn btn-info">Top 10 Salary</a>
+        </center>
+        <br>
+
+        <h3><center>Employee List</center></h3><br>
+        <table class="table" style="hieght:500px">
+          <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th  scope="col">Image</th>
+                <th scope="col">Email</th>
+                <th scope="col">Salary</th>
+                <th scope="col">Joining Date</th>
+                <th scope="col">Update Date</th>
+                <th scope="col">Update Employee</th>
+                <th scope="col">Delete Employee</th>
+            </tr>
+          </thead>
+          {% if Employee_List %}
+            {% for Employee in Employee_List %}
+                <tbody>
+                    <td>{{ Employee.id }}</td>
+                    <td>{{ Employee.firstname }}</td>
+                    <td>{{ Employee.lastname }}</td>
+                    <td>{{ Employee.image }}</td>
+                    <td>{{ Employee.email }}</td>
+                    <td>{{ Employee.salary }}</td>
+                    <td>{{ Employee.created_date }}</td>
+                    <td>{{ Employee.updated_date }}</td>
+                    <td>
+                        <center><a href="/Update_Employee/{{ Employee.id }}" class="btn btn-primary">
+                            Edit
+                        </a></center>
+                    </td>
+                    <td>
+                        <center><a href="/Delete_Employee/{{ Employee.id }}" class="btn btn-danger">
+                            Delete
+                        </a></center>
+                    </td>
+                </tbody>
+            {% endfor %}
+            {% else %}
+                <tbody>
+                    <center><td colspan="9">
+                        No data found.
+                    </td></center>
+                </tbody>
+            {% endif %}
+        </table>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
